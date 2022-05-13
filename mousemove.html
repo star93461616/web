@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background: black;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        .mouse_item {
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+            border: 1px solid #fff;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script>
+        //호ㅏ면이 모두 로드된 후 이동하라
+        window.onload = function () {
+            let h1 = document.getElementsByTagName("h1")[0];
+            let mouse_item = document.getElementsByClassName("mouse_item")[0];
+
+            window.addEventListener("mousemove", mouseFunc, false);
+
+            function mouseFunc(e) {
+                h1.innerHTML = "X:" + e.clientX + " " + "Y: " + e.clientY;
+                mouse_item.style.transform = "translate(" + e.clientX + "px," + e.clientY + "px)";
+            // console.log(e.clientY);
+        }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>test</h1>
+    <div class="mouse_item"></div>
+</body>
+
+</html>
