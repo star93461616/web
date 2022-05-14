@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            position: relative;
+            background: black;
+            cursor: none;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        .mouse_item {
+            position: fixed;
+
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            top: 0;
+            left: 0;
+            margin: -50px 0 0 -50px;
+            transition: all .2s cubic-bezier(0.250, 0.250, 0.750, 0.750); 
+        }
+
+        button {
+            font-size: 40px;
+            background: #fff;
+            color: red;
+            padding: 30px 80px;
+            cursor: pointer;
+            transition: all .5s ease;
+        }
+
+        button:hover {
+            background: red;
+            color: #fff;
+            padding: 100px 160px;
+        }
+    </style>
+    <script>
+        let mouse_item;
+        let h1;
+        let x = 0;
+        let y = 0;
+        let mx = 0;
+        let my = 0;
+        let speed = 0.06;
+        /* 호ㅏ면이 모두 로드된 후 이동하라 */
+        window.onload = function () {
+            /* h1 = document.getElementsByTagName("h1")[0]; */
+            // h1.innerHTML = "X:" + x + " " + "Y: " + y;
+            mouse_item = document.getElementsByClassName("mouse_item")[0];
+            window.addEventListener("click", mouseFunc, false);
+
+
+            function mouseFunc(e) {
+                x = e.clientX;
+                y = e.clientY;
+            mouse_item.style.transform = "tramslate("+ x + "px," + y + "px)";
+               
+            }
+            loop();
+        }
+
+             function loop() {
+            console.log(x, y)
+
+           mx += (x - mx) * speed;
+             my += (y - my) * speed;
+             mouse_item.style.transform = "translate(" + mx + "px," + my + "px)";
+           window.requestAnimationFrame(loop);
+
+             }
+    </script>
+</head>
+
+<body>
+    <h1>test</h1>
+    <div class="mouse_item"></div>
+    <button>start</button>
+</body>
+
+</html>
