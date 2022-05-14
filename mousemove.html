@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
+            position: relative;
             background: black;
+            cursor: none;
         }
 
         h1 {
@@ -19,24 +21,44 @@
 
             width: 100px;
             height: 100px;
-            border: 1px solid #fff;
+            background-color: red;
             top: 0;
             left: 0;
         }
     </style>
     <script>
+        let mouse_item;
+        let h1;
+        let x = 0;
+        let y = 0;
+        let mx = 0;
+        let my = 0;
+        let speed = 0.06;
         //호ㅏ면이 모두 로드된 후 이동하라
-        window.onload = function () {
-            let h1 = document.getElementsByTagName("h1")[0];
-            let mouse_item = document.getElementsByClassName("mouse_item")[0];
+        window.onload = function() {
+     h1 = document.getElementsByTagName("h1")[0];
+       mouse_item = document.getElementsByClassName("mouse_item")[0];
 
             window.addEventListener("mousemove", mouseFunc, false);
 
             function mouseFunc(e) {
-                h1.innerHTML = "X:" + e.clientX + " " + "Y: " + e.clientY;
-                mouse_item.style.transform = "translate(" + e.clientX + "px," + e.clientY + "px)";
-            // console.log(e.clientY);
+                x = e.clientX;
+                y = e.clientY;
+                h1.innerHTML = "X:" + x + " " + "Y: " + y;
+
+                // console.log(e.clientY);
+            }
+            loop();
         }
+
+        function loop() {
+            console.log(x, y)
+
+            mx += (x - mx) * speed;
+            my += (y - my) * speed;
+            mouse_item.style.transform = "translate(" + mx + "px," + my + "px)";
+            window.requestAnimationFrame(loop);
+
         }
     </script>
 </head>
