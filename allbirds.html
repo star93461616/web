@@ -21,9 +21,12 @@
     let my =0;
     let speed = 0.009;
     let _imgArr = 0;
+    let _bird = 0;
 
     window.onload = function(){
         _imgArr = document.getElementsByTagName("img");
+        _bird = document.getElementsByTagName("div")[0];
+
         // alert(_imgArr.length)
         window.addEventListener("mousemove", mouseFunc, false);
 
@@ -38,6 +41,10 @@
         mx += (x-mx) * speed;
         my += (y-my) * speed;
         _imgArr[0].style.transform = "translate("+ -(mx/6) + "px," + -(my/6) +"px)";
+        _imgArr[1].style.transform = "translate("+ -(mx/5) + "px," + -(my/5) +"px)";
+        _imgArr[2].style.transform = "translate("+ -(mx/3) + "px," + -(my/3) +"px)";
+        _imgArr[3].style.transform = "translate("+ (mx/2) + "px," + (my/2) +"px)";
+_bird.style.transform = "translate("+ -(mx/5) + "px," + -(my/5) + "px)";
         window.requestAnimationFrame(loop)
     }
 </script>
